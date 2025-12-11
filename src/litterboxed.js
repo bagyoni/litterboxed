@@ -139,7 +139,10 @@ let partition = (w1, w2) => {
 let genPair = (words, wbfl, unique) => {
     while (1) {
         let w1 = randomChoice(words);
-        let w2 = randomChoice(wbfl.get(w1.slice(-1)))
+        if (!(wbfl.has(w1.slice(-1)))) {
+            continue;
+        }
+        let w2 = randomChoice(wbfl.get(w1.slice(-1)));
         if (new Set(w1 + w2).size == 12 && (!unique || (w1 + w2).length == 13))
             return [w1, w2];
     }
@@ -185,16 +188,7 @@ export let makeGenerate = (words) => {
 
 export let makeCheck = (words) => (w) => {
     w = w.toLowerCase();
-    let a = 0,
-        b = words.length;
-    while (b - a > 1) {
-        let c = Math.floor((a + b) / 2);
-        if (w < words[c])
-            b = c;
-        else
-            a = c;
-    }
-    return w == words[a];
+    return words.includes(w);
 };
 
 export let makeSolve = (words) => (puzzle) => {
