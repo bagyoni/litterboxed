@@ -115,8 +115,8 @@
     );
     let enterWord = () => {
         if (done) return;
-        if (currentWord.length < minlength) return alert("Too short");
-        if (!check(currentWord)) return alert("Not a word");
+        if (currentWord.length < minlength) return alert("túl rövid");
+        if (!check(currentWord)) return alert("ismeretlen szó");
         previousWords = [...previousWords, currentWord];
         currentWord = currentWord.slice(-1);
         if (done) currentWord = "";
@@ -282,8 +282,8 @@
         {/each}
     </svg>
     <div class="buttons">
-        <button on:click={deleteLetter}>Delete</button>
-        <button on:click={enterWord}>Enter</button>
+        <button on:click={deleteLetter}>Törlés</button>
+        <button on:click={enterWord}>Bevitel</button>
     </div>
     {#if displaySols}
         <div class="solutions">
